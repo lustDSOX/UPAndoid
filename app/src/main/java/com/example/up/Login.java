@@ -3,6 +3,7 @@ package com.example.up;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,12 +18,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Login extends AppCompatActivity {
 
@@ -69,9 +64,17 @@ public class Login extends AppCompatActivity {
                             }
                             br.close();
                             JSONObject response = new JSONObject(sb.toString());
+                            User.Id = response.getString("id");
+                            User.avatar = response.getString("avatar");
+                            User.nickName = response.getString("nickName");
+                            User.email = response.getString("email");
+                            User.token = response.getString("token");
                             Log.d("response",response.toString());
-                        } else {
 
+                            Intent main = new Intent(Login.this,MainActivity.class);
+                            startActivity(main);
+                        } else {
+                            Toast.makeText(Login.this, "invalid username or password", Toast.LENGTH_SHORT).show();
                         }
                     }
                     catch (Exception e){
