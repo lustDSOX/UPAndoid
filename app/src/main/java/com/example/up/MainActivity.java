@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -146,4 +147,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
     }
+
+    public void GoProfile(View v){
+        Intent profile = new Intent(MainActivity.this,ProfileActivity.class);
+        startActivity(profile);
+    }
+
 }

@@ -2,7 +2,6 @@ package com.example.up;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,8 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
-import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONObject;
 
@@ -21,24 +18,19 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Login extends AppCompatActivity {
-
-    TextInputLayout emailLayout;
-    TextInputLayout passwordLayout;
+public class OnboardingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        // Получаем объект SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        // Получаем данные о пользователе
+        String password = sharedPreferences.getString("password", "");
+        String email = sharedPreferences.getString("email", "");
 
-        emailLayout = findViewById(R.id.email);
-        passwordLayout = findViewById(R.id.password);
-    }
-    @SuppressLint("NotConstructor")
-    public void Login(View v){
-        if(emailLayout.getEditText().getText().toString().contains("@")){
-           getUser(emailLayout.getEditText().getText().toString(),passwordLayout.getEditText().getText().toString());
-        }
+        getUser(email,password);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_onboard);
     }
 
     void getUser(String email,String password){
@@ -89,10 +81,10 @@ public class Login extends AppCompatActivity {
                         User.token = response.getString("token");
                         Log.d("response",response.toString());
 
-                        Intent main = new Intent(Login.this,MainActivity.class);
+                        Intent main = new Intent(OnboardingActivity.this,MainActivity.class);
                         startActivity(main);
                     } else {
-                        Toast.makeText(Login.this, "invalid username or password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OnboardingActivity.this, "invalid username or password", Toast.LENGTH_SHORT).show();
                     }
                 }
                 catch (Exception e){
@@ -102,8 +94,14 @@ public class Login extends AppCompatActivity {
         }).start();
     }
 
+    public void GoLog(View v){
+        Intent intent = new Intent(OnboardingActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
+
     public void GoReg(View v){
-        //Intent intent = new Intent(Onboarding.this,Reg.class);
+      //Intent intent = new Intent(Onboarding.this,Reg.class);
         // startActivity(intent);
     }
+
 }
