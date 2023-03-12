@@ -22,9 +22,11 @@ import java.util.Locale;
 public class GalleryAdapter extends BaseAdapter {
     private List<Photo> mPhotos;
     private LayoutInflater mInflater;
+    private Context mContext;
 
     public GalleryAdapter(Context context, List<Photo> photos) {
         mPhotos = photos;
+        mContext = context;
         mInflater = LayoutInflater.from(context);
     }
 
@@ -54,14 +56,17 @@ public class GalleryAdapter extends BaseAdapter {
         Button button = convertView.findViewById(R.id.add_btn);
 
         Photo photo = mPhotos.get(position);
-        if(photo!=null){
             imageView.setImageBitmap(photo.image);
             timeTextView.setText(photo.timestamp);
-        }
-        else {
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, PhotoActivity.class);
+                    intent.putExtra("image", photo.image);
+                    mContext.startActivity(intent);
+                }
+            });
 
-            button.setVisibility(View.VISIBLE);
-        }
 
         return convertView;
     }
