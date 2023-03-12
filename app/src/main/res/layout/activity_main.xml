@@ -1,73 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#253334">
 
-
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/welcome_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_name"/>
+        android:layout_height="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp">
 
-    <ListView
-        android:id="@+id/QuotesList"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/go_main"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_recycler_view" />
+        <ImageButton
+            android:id="@+id/btn_hamburger"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/hiddenback"
+            android:src="@drawable/hamburger" />
 
-    <Button
-        android:id="@+id/go_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="main"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/imagelogo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/icon" />
 
-    <Button
-        android:id="@+id/go_listening"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="listen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/go_profile"
-        app:layout_constraintStart_toEndOf="@+id/go_main" />
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:background="#00FFFFFF"
+            android:text="exit" />
 
-    <Button
-        android:id="@+id/go_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="GoProfile"
-        android:text="profile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/welcome_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="25dp"
+            android:text="C возращением, Эмиль!"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+        <TextView
+            android:id="@+id/txt_opic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/welcome_name"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="25dp"
+            android:text="Каким ты себя ощущаешь сегодня?"
+            android:textColor="@color/white"
+            android:textSize="22dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/my_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/welcome_name"
+            android:layout_marginTop="50dp"
+            />
+
+        <ListView
+            android:id="@+id/QuotesList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/my_recycler_view"
+
+            />
+        <ImageButton
+            android:id="@+id/go_main"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@id/go_listening"
+            android:background="@color/hiddenback"
+            android:src="@drawable/icon_main"
+
+            />
+
+        <ImageButton
+            android:id="@+id/go_listening"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:background="@color/hiddenback"
+            android:src="@drawable/sound" />
+
+        <ImageButton
+            android:id="@+id/go_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/go_listening"
+            android:background="@color/hiddenback"
+            android:onClick="GoProfile"
+            android:src="@drawable/profile" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

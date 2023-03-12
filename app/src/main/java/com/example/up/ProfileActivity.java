@@ -41,9 +41,9 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        photoList = findViewById(R.id.photos);
-        ImageView imageView = findViewById(R.id.image);
-        TextView textView = findViewById(R.id.name);
+        photoList = findViewById(R.id.my_recycler_view);
+        ImageView imageView = findViewById(R.id.image_profile);
+        TextView textView = findViewById(R.id.tx_name_profil);
         String imageUrl = User.avatar;
         Picasso.get().load(imageUrl).into(imageView);
         textView.setText(User.nickName);
@@ -153,6 +153,10 @@ public class ProfileActivity extends AppCompatActivity {
             }
             catch (Exception e){}
         }
+    }
+    public void GoMain(View v){
+        Intent main = new Intent(ProfileActivity.this,MainActivity.class);
+        startActivity(main);
     }
 
 }
